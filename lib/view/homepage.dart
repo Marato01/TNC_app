@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'body/turnoff_bluetooth_screen/screen_turnoff_bluetooth.dart';
 import 'header/header.dart';
 
 class HomePage extends StatefulWidget {
@@ -10,8 +10,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
   @override
   Widget build(BuildContext context) {
+
+    final heightSize = MediaQuery.of(context).size.height * 0.20;
+
+
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.only(
@@ -19,9 +24,13 @@ class _HomePageState extends State<HomePage> {
           left: MediaQuery.of(context).size.width * 0.03,
           right: MediaQuery.of(context).size.width * 0.03,
         ),
-        child: const Column(
+        child: Column(
           children: [
-            Header(),
+            const Header(),
+
+            SizedBox(height: heightSize),
+
+            const ScreenTurnoffBluetooth(),
           ],
         ),
       ),
