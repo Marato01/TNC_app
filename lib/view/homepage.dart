@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../provider/switch_provider/switch_provider.dart';
 import 'body/turnoff_bluetooth_screen/screen_turnoff_bluetooth.dart';
+import 'body/turnon_bluetooth_screen/screen_turnon_bluetooth.dart';
 import 'header/header.dart';
 
 class HomePage extends StatefulWidget {
@@ -14,8 +17,9 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
 
-    final heightSize = MediaQuery.of(context).size.height * 0.20;
+    final bleProvider = Provider.of<BluetoothSwitchProvider>(context);
 
+    final heightSize = MediaQuery.of(context).size.height * 0.20;
 
     return Scaffold(
       body: Padding(
@@ -26,11 +30,16 @@ class _HomePageState extends State<HomePage> {
         ),
         child: Column(
           children: [
+
             const Header(),
 
-            SizedBox(height: heightSize),
+            bleProvider.blueSwitch
+                ? const SizedBox()
+                : SizedBox(height: heightSize),
 
-            const ScreenTurnoffBluetooth(),
+            bleProvider.blueSwitch
+                ? const ScreenTurnOnBluetooth()
+                : const ScreenTurnoffBluetooth(),
           ],
         ),
       ),

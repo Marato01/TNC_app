@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:riff_switch/riff_switch.dart';
+import '../../../provider/bluetooth_provider/blu_provider.dart';
+import '../../../provider/switch_provider/switch_provider.dart';
 
 class SwitchButton extends StatefulWidget {
   const SwitchButton({super.key});
@@ -8,15 +11,22 @@ class SwitchButton extends StatefulWidget {
   State<SwitchButton> createState() => _SwitchButtonState();
 }
 class _SwitchButtonState extends State<SwitchButton> {
-  late bool _switchValue_9 = false;
 
   @override
   Widget build(BuildContext context) {
+    final bluetoothSwitchProvider = Provider.of<BluetoothSwitchProvider>(context);
+    final bleProvider = Provider.of<BLEProvider>(context);
     return RiffSwitch(
-      value: _switchValue_9,
-      onChanged: (value) => setState(() {
-        _switchValue_9 = value;
-      }),
+      value: bluetoothSwitchProvider.blueSwitch,
+      onChanged: (value) {
+        bluetoothSwitchProvider.setBlueSwitch(value);
+        if (value) {
+          bleProvider.startScan(context);
+        } else {
+          bleProvider.stopScan();
+          bleProvider.disconnect();
+        }
+      },
       type: RiffSwitchType.cupertino,
     );
   }
