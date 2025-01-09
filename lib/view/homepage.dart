@@ -21,6 +21,7 @@ class _HomePageState extends State<HomePage> {
     final bleProvider = Provider.of<BLEProvider>(context);
 
     final heightSize = MediaQuery.of(context).size.height * 0.20;
+    final gridmargin = MediaQuery.of(context).size.height * 0.05;
 
     //display body with condition ble_On, ble_Off and connected
 
@@ -46,6 +47,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             const Header(), // Keep the header constant
             if (!switchProvider.blueSwitch) SizedBox(height: heightSize), // Optional spacing
+            if (bleProvider.isConnected) SizedBox(height: gridmargin), // Optional spacing
             Expanded(child: bodyContent), // Change only the body content
           ],
         ),

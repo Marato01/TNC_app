@@ -28,7 +28,6 @@ class _ScreenTurnOnBluetoothState extends State<ScreenTurnOnBluetooth> {
 
   @override
   Widget build(BuildContext context) {
-    final bleProvider = Provider.of<BLEProvider>(context);
     return Expanded(
       child: Column(
         children: [
