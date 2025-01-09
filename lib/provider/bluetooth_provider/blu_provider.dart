@@ -51,7 +51,7 @@ class BLEProvider extends ChangeNotifier {
           barrierDismissible: false,
           builder: (BuildContext context) {
             return AlertDialog(
-              backgroundColor: Color(0xFF373737),
+              backgroundColor: const Color(0xFF373737),
               title: const Text("Enable Location Services",style: TextStyle(color: Colors.white),),
               content: const Text("Location services are disabled. Please enable them in settings.",style: TextStyle(color: Colors.white),),
               actions: [
@@ -249,12 +249,12 @@ class BLEProvider extends ChangeNotifier {
       for (var service in services) {
         for (var characteristic in service.characteristics) {
           if (characteristic.isNotifiable) {
-            var _serviceUuid = service.serviceId;
-            var _characteristicUuid = characteristic.characteristicId;
+            var servicesUuid = service.serviceId;
+            var characteristicUuids = characteristic.characteristicId;
 
             notifiableCharacteristic = QualifiedCharacteristic(
-              serviceId: _serviceUuid,
-              characteristicId: _characteristicUuid,
+              serviceId: servicesUuid,
+              characteristicId: characteristicUuids,
               deviceId: _selectedDevice!.id,
             );
             break;

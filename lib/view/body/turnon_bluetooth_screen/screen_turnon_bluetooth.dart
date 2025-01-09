@@ -28,6 +28,7 @@ class _ScreenTurnOnBluetoothState extends State<ScreenTurnOnBluetooth> {
 
   @override
   Widget build(BuildContext context) {
+    final bleProvider = Provider.of<BLEProvider>(context);
     return Expanded(
       child: Column(
         children: [
@@ -50,8 +51,7 @@ class _ScreenTurnOnBluetoothState extends State<ScreenTurnOnBluetooth> {
                   ),
                   itemBuilder: (context, index) {
                     final device = bleProvider.devices[index];
-                    final isSelected =
-                        device.id == bleProvider.selectedDevice?.id;
+                    final isSelected = device.id == bleProvider.selectedDevice?.id;
       
                     return GestureDetector(
                       onTap: () {
@@ -83,8 +83,8 @@ class _ScreenTurnOnBluetoothState extends State<ScreenTurnOnBluetooth> {
                               ],
                             ),
                             Text(
-                              isSelected ? "Connected" : "",
-                              style: const TextStyle(color: Colors.green),
+                              isSelected ? "Connecting" : "",
+                              style: const TextStyle(color: Colors.white24),
                             ),
                           ],
                         ),
