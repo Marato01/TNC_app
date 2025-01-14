@@ -1,4 +1,6 @@
+import 'package:cherry_toast/cherry_toast.dart';
 import 'package:flutter/material.dart';
+import '../../wifi/wifi_screen/wifi_screen.dart';
 
 class ConnectedScreen extends StatefulWidget {
   const ConnectedScreen({super.key});
@@ -19,7 +21,6 @@ class _ConnectedScreenState extends State<ConnectedScreen> {
     {'title': 'Help', 'icon': Icons.help},
   ];
 
-
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
@@ -33,7 +34,23 @@ class _ConnectedScreenState extends State<ConnectedScreen> {
           final item = gridItems[index]; // Access each item
           return GestureDetector(
             onTap: (){
-              print(index);
+              if(index == 0){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const WifiScreen()));
+              } else {
+                CherryToast.info(
+                  toastDuration: const Duration(seconds: 2),
+                  disableToastAnimation: true,
+                  title: const Text(
+                    'This feature not available',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  inheritThemeColors: true,
+                  actionHandler: () {},
+                  onToastClosed: () {},
+                ).show(context);
+              }
             },
             child: Stack(
               children: [

@@ -2,7 +2,7 @@ import 'package:airlora_app/provider/bluetooth_provider/blu_provider.dart';
 import 'package:airlora_app/provider/switch_provider/switch_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'view/homepage.dart';
+import 'view/selectdevice/select_device_screen.dart';
 
 void main() {
   runApp(
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: const Color(0xFF232D3F), // Set the background color
         useMaterial3: true,
       ),
-      home: const HomePage(),
+      home: SelectDeviceScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
