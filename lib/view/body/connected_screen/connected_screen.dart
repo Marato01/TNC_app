@@ -1,6 +1,6 @@
 import 'package:cherry_toast/cherry_toast.dart';
 import 'package:flutter/material.dart';
-import '../../wifi/wifi_screen/wifi_screen.dart';
+import '../../configuration/config_screen/config_screen.dart';
 
 class ConnectedScreen extends StatefulWidget {
   const ConnectedScreen({super.key});
@@ -13,9 +13,9 @@ class _ConnectedScreenState extends State<ConnectedScreen> {
 
   // List of titles and icons
   final List<Map<String, dynamic>> gridItems = [
-    {'title': 'WiFi', 'icon': Icons.wifi},
-    {'title': 'Bluetooth', 'icon': Icons.bluetooth},
-    {'title': 'Settings', 'icon': Icons.settings},
+    {'title': 'Configuration', 'icon': Icons.settings},
+    {'title': 'Graph', 'icon': Icons.stacked_line_chart_outlined},
+    {'title': 'debugging', 'icon': Icons.code_outlined},
     {'title': 'Notifications', 'icon': Icons.notifications},
     {'title': 'Profile', 'icon': Icons.person},
     {'title': 'Help', 'icon': Icons.help},
@@ -35,7 +35,7 @@ class _ConnectedScreenState extends State<ConnectedScreen> {
           return GestureDetector(
             onTap: (){
               if(index == 0){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const WifiScreen()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const ConfigScreen()));
               } else {
                 CherryToast.info(
                   toastDuration: const Duration(seconds: 2),

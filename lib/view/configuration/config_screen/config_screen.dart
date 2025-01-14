@@ -4,14 +4,14 @@ import 'package:provider/provider.dart';
 import '../../../provider/bluetooth_provider/blu_provider.dart';
 import '../../homepage.dart';
 
-class WifiScreen extends StatefulWidget {
-  const WifiScreen({super.key});
+class ConfigScreen extends StatefulWidget {
+  const ConfigScreen({super.key});
 
   @override
-  State<WifiScreen> createState() => _WifiScreenState();
+  State<ConfigScreen> createState() => _ConfigScreenState();
 }
 
-class _WifiScreenState extends State<WifiScreen> {
+class _ConfigScreenState extends State<ConfigScreen> {
   bool _hasShownToast = false;
 
   @override
@@ -70,33 +70,27 @@ class _WifiScreenState extends State<WifiScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Dashboard',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    Text(
-                      'WiFi',
+                      'Configuration',
                       style: TextStyle(
                         color: Colors.white,
                       ),
-                    )
+                    ),
                   ],
                 ),
               ],
             ),
             SizedBox(height: MediaQuery.of(context).size.height * 0.05),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  'Visible Networks',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: MediaQuery.of(context).size.width * 0.05,
-                  ),
-                ),
+
+
+            Text(
+              'Please fill out the fields below to configure your Wi-Fi and additional settings.',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: MediaQuery.of(context).size.width * 0.03
               ),
             ),
+
+
           ],
         ),
       ),

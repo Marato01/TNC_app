@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../../provider/device_provider/devicename_provider.dart';
 import '../homepage.dart';
 

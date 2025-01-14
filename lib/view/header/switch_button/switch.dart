@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:riff_switch/riff_switch.dart';
 import '../../../provider/bluetooth_provider/blu_provider.dart';
 import '../../../provider/switch_provider/switch_provider.dart';
+import '../../selectdevice/select_device_screen.dart';
 
 class SwitchButton extends StatefulWidget {
   const SwitchButton({super.key});
@@ -25,6 +26,7 @@ class _SwitchButtonState extends State<SwitchButton> {
         } else {
           bleProvider.stopScan();
           bleProvider.disconnect();
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SelectDeviceScreen()));
         }
       },
       type: RiffSwitchType.cupertino,
