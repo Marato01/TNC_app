@@ -2,6 +2,7 @@ import 'package:airlora_app/provider/bluetooth_provider/blu_provider.dart';
 import 'package:airlora_app/provider/switch_provider/switch_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'provider/device_provider/devicename_provider.dart';
 import 'view/selectdevice/select_device_screen.dart';
 
 void main() {
@@ -10,6 +11,7 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (context) => BluetoothSwitchProvider()),
         ChangeNotifierProvider(create: (context) => BLEProvider()),
+        ChangeNotifierProvider(create: (context) => DeviceProvider()),
       ],
       child: const MyApp(), // `child` moved to the correct position
     ),

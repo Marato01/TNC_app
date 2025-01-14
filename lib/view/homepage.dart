@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> {
         ),
         child: Column(
           children: [
-            const Header(), // Keep the header constant
+             const Header(), // Keep the header constant
             if (!switchProvider.blueSwitch) SizedBox(height: heightSize), // Optional spacing
             if (bleProvider.isConnected) SizedBox(height: gridmargin), // Optional spacing
             Expanded(child: bodyContent), // Change only the body content
