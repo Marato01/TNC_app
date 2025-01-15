@@ -48,6 +48,14 @@ class SelectDeviceScreen extends StatelessWidget {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
                             color: const Color(0xFF6B6B6B),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.2), // Shadow color
+                                blurRadius: 10, // Softening the shadow
+                                spreadRadius: 2, // Extending the shadow
+                                offset: const Offset(5, 5), // Moving the shadow
+                              ),
+                            ],
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -68,7 +76,7 @@ class SelectDeviceScreen extends StatelessWidget {
               ),
               Text(
                 'Version ${version.toString()}',
-                style: const TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.white, fontSize: MediaQuery.of(context).size.width * 0.03),
               )
             ],
           ),
