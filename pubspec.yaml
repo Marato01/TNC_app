@@ -63,6 +63,9 @@ dependencies:
   #go to bluetooth in settings_yaml:
   app_settings: ^5.1.1
 
+  #loading animation
+  loading_animation_widget: ^1.3.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:provider/provider.dart';
 import '../../../provider/bluetooth_provider/blu_provider.dart';
 
@@ -29,14 +30,27 @@ class _ScreenTurnOnBluetoothState extends State<ScreenTurnOnBluetooth> {
 
   @override
   Widget build(BuildContext context) {
+    final bleProvider = Provider.of<BLEProvider>(context);
     return Expanded(
       child: Column(
         children: [
           Padding(
             padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.05),
-            child: const Align(
-              alignment: Alignment.centerLeft,
-                child: Text("Device", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold))),
+            child: Row(
+              children: [
+                 const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text("Device", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold))),
+
+                SizedBox(width: MediaQuery.of(context).size.width * 0.05),
+
+                if(bleProvider.isScanning)
+                LoadingAnimationWidget.fourRotatingDots(
+                  color: Colors.white,
+                  size: 25,
+                ),
+              ],
+            ),
           ),
 
           Consumer<BLEProvider>(
@@ -54,11 +68,10 @@ class _ScreenTurnOnBluetoothState extends State<ScreenTurnOnBluetooth> {
                     final isSelected = device.id == bleProvider.selectedDevice?.id;
       
                     return GestureDetector(
-                      onTap: () {
-                        bleProvider.connectToDevice(device).catchError((error) {
-                          _showErrorDialog('Connection Error', error.toString());
-                        });
+                      onTap: () async {
+                          await bleProvider.connectToDevice(device);
                       },
+
                       child: SizedBox(
                         height: MediaQuery.of(context).size.height * 0.10,
                         child: Row(
@@ -83,7 +96,7 @@ class _ScreenTurnOnBluetoothState extends State<ScreenTurnOnBluetooth> {
                               ],
                             ),
                             Text(
-                              isSelected ? "Connecting" : "",
+                              isSelected ? "" : "",
                               style: const TextStyle(color: Colors.white24),
                             ),
                           ],
