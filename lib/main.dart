@@ -29,6 +29,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         scaffoldBackgroundColor: const Color(0xFF232D3F), // Set the background color
         useMaterial3: true,
+        fontFamily: 'Roboto',
       ),
       home: SelectDeviceScreen(),
       debugShowCheckedModeBanner: false,
