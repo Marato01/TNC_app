@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:app_settings/app_settings.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';
@@ -44,6 +45,55 @@ class BLEProvider extends ChangeNotifier {
     if (Platform.isAndroid) {
       bool locationEnabled = await Permission.locationWhenInUse.serviceStatus.isEnabled;
 
+      // Check Bluetooth state
+      final bluetoothState = await flutterReactiveBle.statusStream.first;
+
+      if (bluetoothState == BleStatus.poweredOff) {
+        bool? bluetoothDialogResult = await showDialog<bool>(
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              backgroundColor: const Color(0xFF373737),
+              title: const Text("Enable Bluetooth", style: TextStyle(color: Colors.white)),
+              content: const Text("Bluetooth is disabled. Please enable it in settings.", style: TextStyle(color: Colors.white)),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(false);
+                    bool value = false;
+                    final blue = Provider.of<BluetoothSwitchProvider>(context, listen: false);
+                    blue.setBlueSwitch(value);
+                  },
+                  child: const Text("Cancel", style: TextStyle(color: Colors.white)),
+                ),
+                TextButton(
+                  onPressed: () async {
+                    Navigator.of(context).pop(true);
+                    await AppSettings.openAppSettings();
+                  },
+                  child: const Text("Go to Settings", style: TextStyle(color: Colors.white)),
+                ),
+              ],
+            );
+          },
+        );
+        if (bluetoothDialogResult == true) {
+          // Wait for a moment to allow settings to update
+          await Future.delayed(const Duration(seconds: 2));
+          final newBluetoothState = await flutterReactiveBle.statusStream.first;
+
+          if (newBluetoothState == BleStatus.poweredOff) {
+            throw Exception('Bluetooth must be enabled to scan for BLE devices');
+          }
+        } else {
+          // User cancelled, abort scan
+          throw Exception('Bluetooth is required to scan for BLE devices');
+        }
+      }
+
+
+      // Check location state
       if (!locationEnabled) {
         bool? dialogResult = await showDialog<bool>(
           // ignore: use_build_context_synchronously

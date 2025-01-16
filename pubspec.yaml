@@ -57,6 +57,12 @@ dependencies:
   #alert warning
   cherry_toast: ^1.11.0
 
+  #check permission
+  flutter_blue_plus: ^1.35.0
+
+  #go to bluetooth in settings_yaml:
+  app_settings: ^5.1.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
