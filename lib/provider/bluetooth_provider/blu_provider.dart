@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:app_settings/app_settings.dart';
+import 'package:cherry_toast/cherry_toast.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';
@@ -219,7 +220,7 @@ class BLEProvider extends ChangeNotifier {
   }
 
   // Function connect device
-  Future<void> connectToDevice(DiscoveredDevice device) async {
+  Future<void> connectToDevice(BuildContext context, DiscoveredDevice device) async {
     try {
       _isScanning = false;
       _selectedDevice = device;
@@ -239,6 +240,21 @@ class BLEProvider extends ChangeNotifier {
             readCharacteristic();
             notifyListeners();
 
+            //handle connected mesasge
+            CherryToast.success(  // Changed to error type instead of info
+              toastDuration: const Duration(seconds: 1),
+              disableToastAnimation: true,
+              title: const Text(
+                'Connection successful',  // Added error message
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              inheritThemeColors: true,
+              actionHandler: () {},
+              onToastClosed: () {},
+            ).show(context);
+
             final services = await flutterReactiveBle.discoverServices(device.id);
             for (var service in services) {
               serviceUuid = service.serviceId;
@@ -246,9 +262,26 @@ class BLEProvider extends ChangeNotifier {
                 characteristicUuid = characteristic.characteristicId;
               }
             }
-          } else {
+          }
+          else if (connectionState.connectionState == DeviceConnectionState.disconnected) {
             _isConnected = false;
             notifyListeners();
+
+            //handle disconnected message
+            CherryToast.info(  // Changed to error type instead of info
+              toastDuration: const Duration(seconds: 1),
+              disableToastAnimation: true,
+              title: const Text(
+                'Connection failed',  // Added error message
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              inheritThemeColors: true,
+              actionHandler: () {},
+              onToastClosed: () {},
+            ).show(context);
+
           }
         },
         onError: (error) {

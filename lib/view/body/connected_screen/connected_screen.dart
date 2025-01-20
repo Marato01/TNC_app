@@ -1,5 +1,6 @@
 import 'package:cherry_toast/cherry_toast.dart';
 import 'package:flutter/material.dart';
+import '../../Graph/graph_screen.dart';
 import '../../configuration/config_screen/config_screen.dart';
 
 class ConnectedScreen extends StatefulWidget {
@@ -36,7 +37,10 @@ class _ConnectedScreenState extends State<ConnectedScreen> {
             onTap: (){
               if(index == 0){
                 Navigator.push(context, MaterialPageRoute(builder: (context) => const ConfigScreen()));
-              } else {
+              } else if(index ==1){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const GraphScreen()));
+              }
+              else {
                 CherryToast.info(
                   toastDuration: const Duration(seconds: 2),
                   disableToastAnimation: true,

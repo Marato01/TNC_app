@@ -12,21 +12,6 @@ class ScreenTurnOnBluetooth extends StatefulWidget {
 }
 
 class _ScreenTurnOnBluetoothState extends State<ScreenTurnOnBluetooth> {
-  void _showErrorDialog(String title, String message) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(title),
-        content: Text(message),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('OK'),
-          ),
-        ],
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +54,7 @@ class _ScreenTurnOnBluetoothState extends State<ScreenTurnOnBluetooth> {
       
                     return GestureDetector(
                       onTap: () async {
-                          await bleProvider.connectToDevice(device);
+                          await bleProvider.connectToDevice(context, device);
                       },
 
                       child: SizedBox(
@@ -94,10 +79,6 @@ class _ScreenTurnOnBluetoothState extends State<ScreenTurnOnBluetooth> {
                                 ),
                                 const SizedBox(width: 10), // Add some spacing
                               ],
-                            ),
-                            Text(
-                              isSelected ? "" : "",
-                              style: const TextStyle(color: Colors.white24),
                             ),
                           ],
                         ),
