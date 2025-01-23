@@ -242,7 +242,7 @@ class BLEProvider extends ChangeNotifier {
 
             //handle connected mesasge
             CherryToast.success(  // Changed to error type instead of info
-              toastDuration: const Duration(seconds: 1),
+              toastDuration: const Duration(milliseconds: 1),
               disableToastAnimation: true,
               title: const Text(
                 'Connection successful',  // Added error message
@@ -269,7 +269,7 @@ class BLEProvider extends ChangeNotifier {
 
             //handle disconnected message
             CherryToast.info(  // Changed to error type instead of info
-              toastDuration: const Duration(seconds: 1),
+              toastDuration: const Duration(milliseconds: 1),
               disableToastAnimation: true,
               title: const Text(
                 'Connection failed',  // Added error message

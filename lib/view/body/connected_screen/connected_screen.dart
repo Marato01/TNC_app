@@ -42,7 +42,7 @@ class _ConnectedScreenState extends State<ConnectedScreen> {
               }
               else {
                 CherryToast.info(
-                  toastDuration: const Duration(seconds: 2),
+                  toastDuration: const Duration(milliseconds: 1),
                   disableToastAnimation: true,
                   title: const Text(
                     'This feature not available',

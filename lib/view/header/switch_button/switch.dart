@@ -26,10 +26,31 @@ class _SwitchButtonState extends State<SwitchButton> {
         } else {
           bleProvider.stopScan();
           bleProvider.disconnect();
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SelectDeviceScreen()));
-        }
+          // Navigate to the next screen with a transition
+          Navigator.of(context).push(_createRoute());        }
       },
       type: RiffSwitchType.cupertino,
     );
   }
 }
+
+// Create a custom page route with transition
+Route _createRoute() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => SelectDeviceScreen(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(1.0, 0.0); // Start from the right
+      const end = Offset.zero; // End at the original position
+      const curve = Curves.easeInOut;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+      var offsetAnimation = animation.drive(tween);
+
+      return SlideTransition(
+        position: offsetAnimation,
+        child: child,
+      );
+    },
+  );
+}
+
