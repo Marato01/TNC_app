@@ -66,7 +66,6 @@ class _ContainerScreenState extends State<ContainerScreen> {
               //call widget from GraphScreen
               const Expanded(
                   child: Graph()),
-
             ],
           ),
         )
