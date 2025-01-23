@@ -1,6 +1,7 @@
 import 'package:airlora_app/provider/bluetooth_provider/blu_provider.dart';
 import 'package:airlora_app/provider/switch_provider/switch_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'provider/device_provider/devicename_provider.dart';
 import 'view/selectdevice/select_device_screen.dart';
@@ -18,8 +19,22 @@ void main() {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  @override
+  void initState(){
+    super.initState();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
+  }
 
   @override
   Widget build(BuildContext context) {
