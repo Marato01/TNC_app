@@ -3,7 +3,6 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:provider/provider.dart';
 import '../../../provider/bluetooth_provider/blu_provider.dart';
 
-
 class ScreenTurnOnBluetooth extends StatefulWidget {
   const ScreenTurnOnBluetooth({super.key});
 

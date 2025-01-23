@@ -1,6 +1,6 @@
 import 'package:cherry_toast/cherry_toast.dart';
 import 'package:flutter/material.dart';
-import '../../Graph/graph_screen.dart';
+import '../../graph/graph_screen.dart';
 import '../../configuration/config_screen/config_screen.dart';
 
 class ConnectedScreen extends StatefulWidget {
