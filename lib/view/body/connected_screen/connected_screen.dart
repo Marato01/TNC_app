@@ -27,7 +27,7 @@ class _ConnectedScreenState extends State<ConnectedScreen> {
     return GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2, // Number of columns
-          crossAxisSpacing: 50, // Spacing between columns
+          crossAxisSpacing: 20, // Spacing between columns
           mainAxisSpacing: 20, // Spacing between rows
         ),
         itemCount: gridItems.length, // Length of the list,
